@@ -15,10 +15,11 @@ var gameCursor = {}
 function setup() {
     cnv = createCanvas(500, 600)
 
+    // enemy config
     enemy = {
         x: random(width),
         y: 100,
-        d: 100,
+        d: 15,
     }
 
 }
@@ -89,7 +90,7 @@ function spawn() {
     enemy = {
         x: random(width),
         y: 100,
-        d: 100,
+        d: 15,
     }
 }
 
