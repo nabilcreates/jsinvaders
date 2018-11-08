@@ -4,6 +4,8 @@ var bullet = {
     d: 10,
 }
 
+var score = 0;
+
 var enemy = {}
 
 var cnv;
@@ -23,8 +25,9 @@ function setup() {
 
 function draw() {
     background(0)
-    
-    
+
+    enemy.y += 1
+
     gameCursor = {
         x: mouseX,
         y: 500,
@@ -44,12 +47,14 @@ function draw() {
     })
 
     if (checkForIntersect(bullet, enemy)) {
-        enemy.x = 100000;
-        enemy.y = 100000;
         spawn()
+        score ++;
     }
 
-    console.log(enemy.x)
+    if (checkForIntersect(gameCursor, enemy)) {
+        gameOver()
+    }
+
 
 }
 
@@ -71,4 +76,8 @@ function spawn() {
         y: 100,
         d: 100,
     }
+}
+
+function gameOver(){
+    score = 0;
 }
