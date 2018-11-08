@@ -31,6 +31,9 @@ function setup() {
 function draw() {
     background(0)
 
+    // CHECK LEVEL
+    checkLevel()
+
     // DRAW SCORE
     fill(255)
     text('Score: ' + score, 100, 100)
@@ -45,7 +48,7 @@ function draw() {
     }
 
     // enemy.y = speed of the enemy  coming down
-    enemy.y += 5
+    enemy.y += 1
 
 
     // bullet.y = speed of the bullet (between 0 and 30)
@@ -113,4 +116,18 @@ function spawn() {
 
 function gameOver() {
     score = 0;
+}
+
+function checkLevel() {
+    if (score >= 5) {
+        enemy.y += 2;
+    }
+
+    if (score >= 10) {
+        enemy.y += 3;
+    }
+
+    if (score >= 15) {
+        enemy.y += 5;
+    }
 }
