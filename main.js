@@ -1,25 +1,28 @@
-var bullet = {
-    x: null,
-    y: 500,
-    d: 10,
-}
-
+var bullet = {}
 var score = 0;
-
 var enemy = {}
-
+var gameCursor = {}
 var cnv;
 
-var gameCursor = {}
+
 
 function setup() {
-    cnv = createCanvas(500, 600)
+
+    // CANVAS
+    cnv = createCanvas(window.innerWidth, window.innerHeight)
 
     // enemy config
     enemy = {
         x: random(width),
         y: 100,
-        d: 15,
+        d: 30,
+    }
+
+    // bullet config
+    bullet = {
+        x: null,
+        y: 500,
+        d: 20,
     }
 
 }
@@ -27,26 +30,34 @@ function setup() {
 function draw() {
     background(0)
 
-    // enemy.y = speed of the enemy  coming down
-    enemy.y += 5
+    // DRAW SCORE
+    fill(255)
+    text('Score: ' + score , 100, 100)
 
     // set gamecursor config
     gameCursor = {
         x: mouseX,
-        y: 500,
-        d: 10
+        y: height - 200,
+        d: 10,
+        sx: 10,
+        sy: 5,
     }
 
-    // bullet.y = speed of the bullet
+    // enemy.y = speed of the enemy  coming down
+    enemy.y += 5
+
+
+    // bullet.y = speed of the bullet (between 0 and 30)
     bullet.x = mouseX
-    bullet.y -= 20
+    bullet.y -= 30
 
     // draw bullet and enemy
     ellipse(bullet.x, bullet.y, bullet.d)
-    rect(enemy.x, enemy.y, enemy.d,enemy.d)
+
+    rect(enemy.x, enemy.y, enemy.d, enemy.d)
 
     // draw the game cursor
-    ellipse(gameCursor.x, gameCursor.y, gameCursor.d)
+    rect(gameCursor.x, gameCursor.y, gameCursor.sx, gameCursor.sy)
 
     // if pressed mouse on canvas, shoot
     cnv.mousePressed(() => {
@@ -55,18 +66,21 @@ function draw() {
 
     // intersect check between bullet and enemy
     if (checkForIntersect(bullet, enemy)) {
+        console.log('score')
         spawn()
-        score ++;
+        score++;
     }
 
     // intersect check between game cursor and the enemy
     if (checkForIntersect(gameCursor, enemy)) {
+        console.log('gameover')
         spawn()
         gameOver()
     }
 
     // Check if enemy goes after the width or the height
-    if(enemy.x > width || enemy.y > height){
+    if (enemy.x > width || enemy.y > height) {
+        console.log('gameover')
         spawn()
         gameOver()
     }
@@ -80,20 +94,23 @@ function checkForIntersect(itemCheck0, itemCheck1) {
 }
 
 // CLICKEVENT (RETURN E TO ORIGINAL SPOT)
+// BULLET WILL START AT THE GAMECURSOR.Y
 function shoot() {
     bullet.x = mouseX;
-    bullet.y = 500;
+    bullet.y = gameCursor.y;
 }
 
 // SPAWN
 function spawn() {
+
+    // enemy config
     enemy = {
         x: random(width),
-        y: 100,
-        d: 15,
+        y: 0,
+        d: 30,
     }
 }
 
-function gameOver(){
+function gameOver() {
     score = 0;
 }
