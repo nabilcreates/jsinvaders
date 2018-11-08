@@ -64,7 +64,6 @@ function draw() {
         shoot()
     })
 
-    // intersect check between bullet and enemy
     if (checkForIntersect(bullet, enemy)) {
         console.log('score')
         spawn()
@@ -105,7 +104,7 @@ function spawn() {
 
     // enemy config
     enemy = {
-        x: random(width),
+        x: random(width) - bullet.d,
         y: 0,
         d: 30,
     }
