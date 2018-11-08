@@ -36,7 +36,7 @@ function draw() {
 
     // DRAW SCORE
     fill(255)
-    text('Score: ' + score, 100, 100)
+    text('Score: ' + score, 40, 40)
 
     // set gamecursor config
     gameCursor = {
