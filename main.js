@@ -15,7 +15,7 @@ function setup() {
 
     enemy = {
         x: random(width),
-        y: random(height),
+        y: 100,
         d: 100,
     }
 
@@ -23,6 +23,7 @@ function setup() {
 
 function draw() {
     background(0)
+    
     
     gameCursor = {
         x: mouseX,
@@ -67,7 +68,7 @@ function shoot() {
 function spawn() {
     enemy = {
         x: random(width),
-        y: random(height - enemy.d),
+        y: 100,
         d: 100,
     }
 }
