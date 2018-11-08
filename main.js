@@ -2,6 +2,7 @@ var bullet = {}
 var score = 0;
 var enemy = {}
 var gameCursor = {}
+var base = {};
 var cnv;
 
 
@@ -32,7 +33,7 @@ function draw() {
 
     // DRAW SCORE
     fill(255)
-    text('Score: ' + score , 100, 100)
+    text('Score: ' + score, 100, 100)
 
     // set gamecursor config
     gameCursor = {
