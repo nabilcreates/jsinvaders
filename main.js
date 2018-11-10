@@ -7,6 +7,7 @@ var cnv;
 
 
 var enemies = 5;
+var speed = 1;
 
 function setup() {
 
@@ -52,7 +53,7 @@ function draw() {
 
     // enemy.y = speed of the enemy  coming down
     for (var i = 0; i < enemy.length; i++) {
-        enemy[i].y += 1
+        enemy[i].y += speed
     }
 
 
@@ -93,11 +94,13 @@ function draw() {
         }
     }
 
-    // Check if enemy goes after the width or the height
-    if (enemy.x > width || enemy.y > height) {
-        console.log('gameover')
-        spawn(i)
-        gameOver()
+    for (var i = 0; i < enemy.length; i++) {
+        // Check if enemy goes after the width or the height
+        if (enemy[i].x > width || enemy[i].y > height) {
+            console.log('over')
+            spawn(i)
+            gameOver()
+        }
     }
 
 
@@ -128,18 +131,26 @@ function spawn(index) {
 
 function gameOver() {
     score = 0;
+
+    for (var i = 0; i < enemy.length; i++) {
+        spawn(i)
+    }
 }
 
 function checkLevel() {
-    if (score >= 5) {
-        enemy.y += 2;
+
+    for (var i = 0; i < enemy.length; i++) {
+        if (score >= 5) {
+            enemy[i].y += 2;
+        }
+
+        if (score >= 10) {
+            enemy[i].y += 3;
+        }
+
+        if (score >= 15) {
+            enemy[i].y += 5;
+        }
     }
 
-    if (score >= 10) {
-        enemy.y += 3;
-    }
-
-    if (score >= 15) {
-        enemy.y += 5;
-    }
 }
