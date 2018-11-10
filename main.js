@@ -32,9 +32,9 @@ function setup() {
     // enemy config (ENEMY IS AN ARRAY WITH INFO FOR ENEMIES)
     for (var i = 0; i < enemies; i++) {
         enemy.push({
-            x: random(width),
+            x: random(width) - 150,
             y: 100,
-            d: 30,
+            d: 20,
         })
     }
 
@@ -165,9 +165,9 @@ function shoot() {
 function spawn(index) {
 
     enemy[index] = {
-        x: random(width) - bullet.d,
+        x: random(width) - 150,
         y: 0,
-        d: 30,
+        d: 20,
     }
 
 }
