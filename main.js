@@ -40,7 +40,7 @@ function setup() {
     song.setVolume(0.3)
     
     // PLAY THE SONG
-    song.play()
+    song.loop()
 
 }
 
