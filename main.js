@@ -7,14 +7,14 @@ var cnv;
 
 
 var enemies = 5;
-var speed = 1;
+var speed = 0.5;
 
 function setup() {
 
     // CANVAS
     cnv = createCanvas(window.innerWidth, window.innerHeight)
 
-    // enemy config
+    // enemy config (ENEMY IS AN ARRAY WITH INFO FOR ENEMIES)
     for (var i = 0; i < enemies; i++) {
         enemy.push({
             x: random(width),
@@ -61,9 +61,10 @@ function draw() {
     bullet.x = mouseX
     bullet.y -= 30
 
-    // draw bullet and enemy
+    // draw bullet
     ellipse(bullet.x, bullet.y, bullet.d)
 
+    // DRAW THE ENEMY (ITTERATING OVER EVERY ENEMY TO DRAW THEM)
     for (var i = 0; i < enemy.length; i++) {
         rect(enemy[i].x, enemy[i].y, enemy[i].d, enemy[i].d)
     }
@@ -76,6 +77,7 @@ function draw() {
         shoot()
     })
 
+    // ITTERATE OVER ENEMY AND SEE IF THE BULLET INTERSECTS WITH ANY OF THE ENEMY IN THE ARRAY
     for (var i = 0; i < enemy.length; i++) {
         if (checkForIntersect(bullet, enemy[i])) {
             console.log('score')
@@ -84,8 +86,8 @@ function draw() {
         }
     }
 
+    // ITTERATE FOR EVERY ENEMY AND SEE IF THE GAME CURSOR INTERSECTS WITH ANY OF THE ENEMY IN THE ARRAY
     // intersect check between game cursor and the enemy
-
     for (var i = 0; i < enemy.length; i++) {
         if (checkForIntersect(gameCursor, enemy[i])) {
             console.log('gameover')
@@ -94,6 +96,7 @@ function draw() {
         }
     }
 
+    // ITTERATE FOR EVERY ENEMY AND SEE IF THEY GO ABOVE THE WIDTH OR HEIGHT
     for (var i = 0; i < enemy.length; i++) {
         // Check if enemy goes after the width or the height
         if (enemy[i].x > width || enemy[i].y > height) {
@@ -130,27 +133,27 @@ function spawn(index) {
 }
 
 function gameOver() {
-    score = 0;
 
+    // SCORE 0 AND INITIAL SPEED
+    score = 0;
+    speed = 0.5
+    
     for (var i = 0; i < enemy.length; i++) {
         spawn(i)
     }
 }
 
 function checkLevel() {
+    if (score >= 5) {
+        speed = 1;
+    }
 
-    for (var i = 0; i < enemy.length; i++) {
-        if (score >= 5) {
-            enemy[i].y += 2;
-        }
+    if (score >= 10) {
+        speed = 3;
+    }
 
-        if (score >= 10) {
-            enemy[i].y += 3;
-        }
-
-        if (score >= 15) {
-            enemy[i].y += 5;
-        }
+    if (score >= 15) {
+        speed = 5;
     }
 
 }
