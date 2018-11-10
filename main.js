@@ -51,7 +51,7 @@ function draw() {
     }
 
     // enemy.y = speed of the enemy  coming down
-    for(var i = 0; i < enemy.length; i++){
+    for (var i = 0; i < enemy.length; i++) {
         enemy[i].y += 1
     }
 
@@ -63,7 +63,7 @@ function draw() {
     // draw bullet and enemy
     ellipse(bullet.x, bullet.y, bullet.d)
 
-    for(var i = 0; i < enemy.length; i ++){
+    for (var i = 0; i < enemy.length; i++) {
         rect(enemy[i].x, enemy[i].y, enemy[i].d, enemy[i].d)
     }
 
@@ -75,23 +75,28 @@ function draw() {
         shoot()
     })
 
-    if (checkForIntersect(bullet, enemy)) {
-        console.log('score')
-        spawn()
-        score++;
+    for (var i = 0; i < enemy.length; i++) {
+        if (checkForIntersect(bullet, enemy[i])) {
+            console.log('score')
+            spawn(i)
+            score++;
+        }
     }
 
     // intersect check between game cursor and the enemy
-    if (checkForIntersect(gameCursor, enemy)) {
-        console.log('gameover')
-        spawn()
-        gameOver()
+
+    for (var i = 0; i < enemy.length; i++) {
+        if (checkForIntersect(gameCursor, enemy[i])) {
+            console.log('gameover')
+            spawn(i)
+            gameOver()
+        }
     }
 
     // Check if enemy goes after the width or the height
     if (enemy.x > width || enemy.y > height) {
         console.log('gameover')
-        spawn()
+        spawn(i)
         gameOver()
     }
 
@@ -111,14 +116,14 @@ function shoot() {
 }
 
 // SPAWN
-function spawn() {
+function spawn(index) {
 
-    // enemy config
-    enemy = {
+    enemy[index] = {
         x: random(width) - bullet.d,
         y: 0,
         d: 30,
     }
+
 }
 
 function gameOver() {
