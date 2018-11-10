@@ -1,11 +1,12 @@
 var bullet = {}
 var score = 0;
-var enemy = {}
+var enemy = []
 var gameCursor = {}
 var base = {};
 var cnv;
 
 
+var enemies = 5;
 
 function setup() {
 
@@ -13,10 +14,12 @@ function setup() {
     cnv = createCanvas(window.innerWidth, window.innerHeight)
 
     // enemy config
-    enemy = {
-        x: random(width),
-        y: 100,
-        d: 30,
+    for (var i = 0; i < enemies; i++) {
+        enemy.push({
+            x: random(width),
+            y: 100,
+            d: 30,
+        })
     }
 
     // bullet config
@@ -48,7 +51,9 @@ function draw() {
     }
 
     // enemy.y = speed of the enemy  coming down
-    enemy.y += 1
+    for(var i = 0; i < enemy.length; i++){
+        enemy[i].y += 1
+    }
 
 
     // bullet.y = speed of the bullet (between 0 and 30)
@@ -58,7 +63,9 @@ function draw() {
     // draw bullet and enemy
     ellipse(bullet.x, bullet.y, bullet.d)
 
-    rect(enemy.x, enemy.y, enemy.d, enemy.d)
+    for(var i = 0; i < enemy.length; i ++){
+        rect(enemy[i].x, enemy[i].y, enemy[i].d, enemy[i].d)
+    }
 
     // draw the game cursor
     rect(gameCursor.x, gameCursor.y, gameCursor.sx, gameCursor.sy)
