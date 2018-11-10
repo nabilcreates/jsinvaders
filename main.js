@@ -48,7 +48,11 @@ function setup() {
 }
 
 function draw() {
+
+    push()
+    tint(255,50)
     image(bg, 0, 0 , width , height);
+    pop()
 
     // CHECK LEVEL
     checkLevel()
