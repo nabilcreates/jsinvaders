@@ -6,7 +6,7 @@ var base = {};
 var cnv;
 
 
-var enemies = 5;
+var enemies = 3;
 var speed = 0.5;
 
 var song;
