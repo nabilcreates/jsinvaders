@@ -8,7 +8,7 @@ var score = 0;
 var highscore;
 
 var enemies = 3;
-var speed = 0.5;
+var speed = 3;
 
 var song;
 var bg;
@@ -78,7 +78,7 @@ function draw() {
         if(buttoncount % 2 == 1){
             speed = 0
         }else{
-            speed = 1
+            speed = 3
         }
     })
     
@@ -87,8 +87,8 @@ function draw() {
         x: mouseX,
         y: height - 200,
         d: 10,
-        sx: 10,
-        sy: 5,
+        sx: 10 * 2,
+        sy: 5 * 2,
     }
 
     // enemy.y = speed of the enemy  coming down
@@ -177,7 +177,7 @@ function gameOver() {
     // SCORE 0 AND INITIAL SPEED
     highscore = score;
     score = 0;
-    speed = 0.5;
+    speed = 3;
     
     for (var i = 0; i < enemy.length; i++) {
         spawn(i)
