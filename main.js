@@ -14,6 +14,7 @@ var song;
 var bg;
 
 var pausebutton;
+var buttoncount = 0;
 
 function preload(){
     song = loadSound('assets/audio/song.mp3')
@@ -21,6 +22,9 @@ function preload(){
 }
 
 function setup() {
+
+    // SET PAUSEBUTTON (BEFORE CANVAS IS DRAWN SO BUTTON IS ONTOP OF CANVAS)
+    pausebutton = createButton('PAUSE GAME')
 
     // CANVAS
     cnv = createCanvas(window.innerWidth, window.innerHeight)
@@ -41,6 +45,7 @@ function setup() {
         d: 20,
     }
 
+
     // SET HIGH SCORE TO 0 FIRST
     highscore = 0;
 
@@ -55,17 +60,28 @@ function setup() {
 
 function draw() {
     fill(255) 
-
-    
+    // set bg
     image(bg, 0, 0 , width , height);
     
     // CHECK LEVEL
-    checkLevel()
+    //checkLevel()
     
     // DRAW SCORE AND BEST SCORE AND PAUSE BUTTON
     text('Score: ' + score, 40, 40)
     text('High Score: ' + highscore, 40, 55)
 
+    // CHECK FOR MOUSEPRESSED ON PAUSEBUTTON
+    pausebutton.mousePressed(()=>{
+
+        buttoncount++
+        
+        if(buttoncount % 2 == 1){
+            speed = 0
+        }else{
+            speed = 1
+        }
+    })
+    
     // set gamecursor config
     gameCursor = {
         x: mouseX,
