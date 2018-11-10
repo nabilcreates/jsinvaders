@@ -149,11 +149,11 @@ function checkLevel() {
     }
 
     if (score >= 10) {
-        speed = 3;
+        speed = 2;
     }
 
     if (score >= 15) {
-        speed = 5;
+        speed = 3;
     }
 
 }
