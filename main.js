@@ -36,6 +36,9 @@ function setup() {
         d: 20,
     }
 
+    // SET VOLUME OF SONG
+    song.setVolume(0.3)
+    
     // PLAY THE SONG
     song.play()
 
