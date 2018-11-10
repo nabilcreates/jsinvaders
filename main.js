@@ -33,7 +33,7 @@ function setup() {
     for (var i = 0; i < enemies; i++) {
         enemy.push({
             x: random(width) - 150,
-            y: 100,
+            y: random(height) - 250,
             d: 20,
         })
     }
@@ -42,7 +42,7 @@ function setup() {
     bullet = {
         x: null,
         y: 500,
-        d: 20,
+        d: 10,
     }
 
 
