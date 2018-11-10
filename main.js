@@ -1,16 +1,19 @@
 var bullet = {}
-var score = 0;
 var enemy = []
 var gameCursor = {}
 var base = {};
 var cnv;
 
+var score = 0;
+var highscore;
 
 var enemies = 3;
 var speed = 0.5;
 
 var song;
 var bg;
+
+var pausebutton;
 
 function preload(){
     song = loadSound('assets/audio/song.mp3')
@@ -38,6 +41,9 @@ function setup() {
         d: 20,
     }
 
+    // SET HIGH SCORE TO 0 FIRST
+    highscore = 0;
+
     // SET VOLUME OF SONG
     song.setVolume(0.3)
     
@@ -48,15 +54,17 @@ function setup() {
 }
 
 function draw() {
+    fill(255) 
 
+    
     image(bg, 0, 0 , width , height);
-
+    
     // CHECK LEVEL
     checkLevel()
-
-    // DRAW SCORE
-    fill(255)
+    
+    // DRAW SCORE AND BEST SCORE AND PAUSE BUTTON
     text('Score: ' + score, 40, 40)
+    text('High Score: ' + highscore, 40, 55)
 
     // set gamecursor config
     gameCursor = {
@@ -151,8 +159,9 @@ function spawn(index) {
 function gameOver() {
 
     // SCORE 0 AND INITIAL SPEED
+    highscore = score;
     score = 0;
-    speed = 0.5
+    speed = 0.5;
     
     for (var i = 0; i < enemy.length; i++) {
         spawn(i)
