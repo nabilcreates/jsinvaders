@@ -9,6 +9,12 @@ var cnv;
 var enemies = 5;
 var speed = 0.5;
 
+var song;
+
+function preload(){
+    song = loadSound('assets/audio/song.mp3')
+}
+
 function setup() {
 
     // CANVAS
@@ -29,6 +35,9 @@ function setup() {
         y: 500,
         d: 20,
     }
+
+    // PLAY THE SONG
+    song.play()
 
 }
 
