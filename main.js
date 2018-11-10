@@ -10,9 +10,11 @@ var enemies = 3;
 var speed = 0.5;
 
 var song;
+var bg;
 
 function preload(){
     song = loadSound('assets/audio/song.mp3')
+    bg = loadImage('assets/images/bg.png')
 }
 
 function setup() {
@@ -42,10 +44,11 @@ function setup() {
     // PLAY THE SONG
     song.loop()
 
+    
 }
 
 function draw() {
-    background(0)
+    image(bg, 0, 0 , width , height);
 
     // CHECK LEVEL
     checkLevel()
